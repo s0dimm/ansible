@@ -3,7 +3,7 @@
   tasks:
   - name: clear old docker images
     shell:
-    	"crictl rmi --prune"
+    	crictl rmi --prune
     register: cri_clear
   - debug:
     	msg: ""
