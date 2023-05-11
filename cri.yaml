@@ -1,9 +1,8 @@
 - name: cleaner
   hosts: all
   tasks:
-  - name: clear old docker images
-    shell:
-    	crictl rmi --prune
-    register: cri_clear
-  - debug:
-    	msg: ""
+    - name: clear old docker images
+      shell: crictl rmi --prune
+      register: cri_clear
+    - debug:
+        msg: ""
