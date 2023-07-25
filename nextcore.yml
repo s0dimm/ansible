@@ -1,0 +1,36 @@
+- name: Update Let's Encrypt Certificate
+  hosts: nextcore  
+  become: true  
+  tasks:
+    - name: up ens224 
+      shell: "ifup ens224" 
+      ignore_errors: yes
+      changed_when: false
+
+    - name: pause for {{ wait_seconds | int }} second(s)
+      ansible.builtin.pause:
+        seconds: "{{ wait_seconds | int }}"
+
+    - name: Renew Let's Encrypt certificate
+      shell: "certbot renew --cert-name {{ cert_name }}"
+      args:
+        warn: true 
+
+    - name: pause for {{ wait_seconds | int }} second(s)
+      ansible.builtin.pause:
+        seconds: "{{ wait_seconds | int }}"
+
+    - name: down ens224 
+      shell: "ifdown ens224" 
+      ignore_errors: yes
+      changed_when: false
+
+    - name: Reload Nginx 
+      shell: "systemctl reload nginx" 
+      ignore_errors: yes
+      changed_when: false
+
+    - name: Reload Asterisk
+      shell: "asterisk -rx 'module reload http'" 
+      ignore_errors: yes
+      changed_when: false
