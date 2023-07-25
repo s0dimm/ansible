@@ -5,7 +5,8 @@
     - name: up ens224 
       shell: "ifup ens224" 
       ignore_errors: yes
-      changed_when: false
+      changed_when: true
+      failed_when: false
 
     - name: pause for {{ wait_seconds | int }} second(s)
       ansible.builtin.pause:
@@ -23,14 +24,17 @@
     - name: down ens224 
       shell: "ifdown ens224" 
       ignore_errors: yes
-      changed_when: false
+      changed_when: true
+      failed_when: false
 
     - name: Reload Nginx 
       shell: "systemctl reload nginx" 
       ignore_errors: yes
-      changed_when: false
+      changed_when: true
+      failed_when: false
 
     - name: Reload Asterisk
       shell: "asterisk -rx 'module reload http'" 
       ignore_errors: yes
-      changed_when: false
+      changed_when: true
+      failed_when: false
