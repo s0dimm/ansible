@@ -1,5 +1,5 @@
 - name: Update Let's Encrypt Certificate
-  hosts: nextcore  
+  hosts: tnextcore 
   become: true  
   tasks:
     - name: up ens224 
