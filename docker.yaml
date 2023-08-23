@@ -2,8 +2,7 @@
   hosts: all
   tasks:
     - name: clear old docker images
-      become: true
-      become_user: dgordeev
+      remote_user: dgordeev
       shell: yes | docker system prune -a --volumes 
       register: cri_clear
     - debug:
