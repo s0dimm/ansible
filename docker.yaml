@@ -2,6 +2,7 @@
   hosts: all
   tasks:
     - name: clear old docker images
+      remote_user: admin
       shell: yes | docker system prune -a --volumes 
       register: cri_clear
     - debug:
