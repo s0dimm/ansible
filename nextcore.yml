@@ -1,5 +1,5 @@
 - name: Update Let's Encrypt Certificate
-  hosts: dnextcore 
+  hosts: {{ host_name }}
   become: true  
   tasks:
     - name: up ens224 
