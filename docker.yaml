@@ -1,5 +1,5 @@
 - name: cleaner
-  hosts: all
+  hosts: pc
   tasks:
     - name: clear old docker images
       shell: yes | docker system prune -a --volumes 
