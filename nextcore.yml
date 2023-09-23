@@ -1,5 +1,5 @@
 - name: Update Let's Encrypt Certificate
-  hosts: {{ host_name }}
+  hosts: "{{ host_name }}"
   become: true  
   tasks:
     - name: up ens224 
