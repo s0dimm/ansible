@@ -1,16 +1,8 @@
 - name: create, find and delete old backups
   hosts: etcd
-  tasks:
-    - name: Get timestamp from the system
-      shell: "date +%Y-%m-%d%H-%M-%S"
-      register: tstamp
-      
-    - name: Set variables
-      set_fact:
-        cur_date: "{{ tstamp.stdout[0:10]}}"
-        
+  tasks:        
     - name: Run etcd backup
-      shell: "etcdctl --endpoints={{ endpoints }} --cacert=/{{ cacert }} --key=/{{ key }} snapshot save {{ etcd_backup_dir }}-{{ cur_date }}.db"
+      shell: "etcdctl --endpoints={{ endpoints }} --cacert={{ cacert }} --key={{ key }} snapshot save {{ etcd_backup_dir }}.db"
       become: yes
       
     - name: Find old backup files
