@@ -11,7 +11,7 @@
       
     - name: Find old backup files
       find:
-        paths: {{ etcd_backup_dir }}
+        paths: "{{ etcd_backup_dir }}"
         patterns: "*.db" 
         age: 3d
         recurse: yes
