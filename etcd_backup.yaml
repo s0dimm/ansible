@@ -2,7 +2,7 @@
   hosts: etcd
   tasks:        
     - name: Run etcd backup
-      shell: "etcdctl --endpoints={{ endpoints }} --cacert={{ cacert }} --key={{ key }} snapshot save {{ etcd_backup_dir }}etcd-{{ ansible_date_time.date }}.db"
+      shell: "etcdctl --endpoints={{ endpoints }} --cacert={{ cacert }} --cert={{ cert }} --key={{ key }} snapshot save {{ etcd_backup_dir }}etcd-{{ ansible_date_time.date }}.db"
       become: yes
       
     - name: Find old backup files
