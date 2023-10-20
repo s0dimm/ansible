@@ -1,4 +1,4 @@
-- name: Find and delete old backups
+- name: create, find and delete old backups
   hosts: etcd
   tasks:
     - name: Get timestamp from the system
