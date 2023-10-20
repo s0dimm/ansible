@@ -1,5 +1,5 @@
 - name: Find and delete old backups
-  hosts: etcd-server
+  hosts: etcd
   tasks:
     - name: Set variables
       set_fact:
