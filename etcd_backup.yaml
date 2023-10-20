@@ -4,10 +4,11 @@
     - name: Set variables
       set_fact:
        cur_date: "{{ tstamp.stdout[0:10]}}"
+       
     - name: Run etcd backup
       shell: "etcdctl --endpoints={{ endpoints }} --cacert=/{{ cacert }} --key=/{{ key }} snapshot save {{ etcd_backup_dir }}-{{ cur_date }}.db"
       become: yes
-	  
+      
     - name: Find old backup files
       find:
         paths: {{ etcd_backup_dir }}
