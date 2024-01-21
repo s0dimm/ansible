@@ -28,10 +28,9 @@
       failed_when: false
 
     - name: Reload Nginx 
-      shell: "systemctl reload nginx" 
-      ignore_errors: yes
-      changed_when: true
-      failed_when: false
+      ansible.builtin.service:
+        name: nginx
+        state: reloaded
 
     - name: Reload Asterisk
       shell: "asterisk -rx 'module reload http'" 
