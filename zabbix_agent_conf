@@ -1,0 +1,17 @@
+---
+- name: Install a package using Ansible
+  hosts: all
+  become: no
+
+  tasks: 
+    - name: Copy file with owner and permissions
+      ansible.builtin.copy:
+        src: /opt/dick/zabbix_agent2.conf
+        dest: /mnt/zabbix/zabbix_agent2.conf
+        owner: root
+        group: root
+        mode: '0644'
+    - name: Restart service zabbix-agent2
+      ansible.builtin.service:
+        name: zabbix-agent2
+        state: restarted
